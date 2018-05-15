@@ -34,10 +34,10 @@ contract SupplyChain is TimedStateMachine, Ownable {
         allowFunction(QUALITY, this.recordQualityCheck.selector);
         allowFunction(SHIPPING, this.recordShipment.selector);
 
-        // End the sale when the cap is reached
+        // Start condition for SHIPPING state
         addStartCondition(SHIPPING, wasQualityOk);
 
-        // Set the onSaleEnded callback (will be called when the sale ends)
+        // Callback for quality state
         addCallback(QUALITY, markUrgent);
 
     }
